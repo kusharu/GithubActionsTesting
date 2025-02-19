@@ -31,7 +31,7 @@ jobs:
         ref: gh-pages
         path: gh-pages
 
-    - name: Build test report
+    - name: Build test report okay
       uses: simple-elf/allure-report-action@v1.7
       if: always()
       with:
