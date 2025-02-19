@@ -23,7 +23,7 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
 
-    - name: Load test report history
+    - name: Load test report history okay
       uses: actions/checkout@v3
       if: always()
       continue-on-error: true
