@@ -23,6 +23,12 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
 
+    - uses: actions/upload-artifact@master
+      with:
+        name: allure-results
+        path: allure-results
+        retention-days: 20
+
     - name: Load test report history okay
       uses: actions/checkout@v3
       if: always()
@@ -34,10 +40,13 @@ jobs:
     - name: Build test report okay
       uses: simple-elf/allure-report-action@v1.7
       if: always()
+      id: allure-report
       with:
+        allure_results: allure-results
         gh_pages: gh-pages
         allure_history: allure-history
-        allure_results: build/allure-results      
+        allure_report: allure-report    
+        keep_reports: 20  
       
     - name: Publish test report Okay
       uses: peaceiris/actions-gh-pages@v3
