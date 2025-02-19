@@ -1,0 +1,135 @@
+//Import the playwright module
+//test object is to create "" number of test cases in the spec file
+//expect object is used to carry out assertions/validations
+const { test, expect } = require("@playwright/test");
+
+//Import the dynamic json file
+var postRequest = require("../test-data/post_request_body.json");
+
+//Import the token json file to create basic authentication key
+const tokenRequest = require("../test-data/token_request_body.json");
+
+//Import the common.js file where the function create range of number is defined
+import { rangeNum } from "../utils/common";
+
+
+
+test("PUT API request in playwright using range of number", async({request,}) =>{
+
+   
+    
+    console.log("===================POST METHOD - CREATE BOOKING========================")
+
+    //Create a Post API request using static request body using Playwright
+    const postAPIResponse = await request.post("/booking", {
+
+        //Request body (data), headers (headers), Query parameters (params),etc
+        //Convert String to JSON - updatedRequestBody variable is in string format ; converting to JSON using JSON object's stringify() method
+        data: postRequest,
+        // params:,
+        // headers:,
+
+    });
+ 
+    //Validate the Status Codes
+    //postAPIResponse.ok()  - Actual result
+    //toBeTruthy() - exoected result is true
+    expect ( postAPIResponse.ok()).toBeTruthy();
+    expect (postAPIResponse.status()).toBe(200);
+    console.log(postAPIResponse.status());
+    console.log(postAPIResponse.ok());
+
+    //Convert the responce from String to JSON - this response has the booking id which is done in POST METHOD
+    const postAPIResponsebody = await postAPIResponse.json();
+    console.log("Response in JSON is :")
+    console.log(await postAPIResponse.json());
+
+    //Get the booking ID and keep it to a variable
+    const bID = postAPIResponsebody.bookingid;
+   
+
+    //Validate the JSON response body to check for specific JSON objects
+    expect(postAPIResponsebody.booking).toHaveProperty("firstname" , "Kaushik");
+    expect(postAPIResponsebody.booking).toHaveProperty("lastname" , "Mukherjee");
+
+    //Validate API response for specific nested JSON objects
+    expect(postAPIResponsebody.booking.bookingdates).toHaveProperty("checkin" , "2018-01-01");
+    expect(postAPIResponsebody.booking.bookingdates).toHaveProperty("checkout" , "2019-01-01");
+
+   
+    console.log("===================AUTHENTICATION KEY WITH POST METHOD ========================")
+    const tokenAPIResponse = await request.post("/auth", {
+        //Request body
+        data: tokenRequest,
+
+        headers: {
+            "Content-Type": "application/json",
+        },
+
+
+    });
+
+    //Validate the Status Codes
+    expect ( tokenAPIResponse.ok()).toBeTruthy();
+    expect (tokenAPIResponse.status()).toBe(200);
+
+    //Convert the response from String to JSON - this response has the token which is done in POST METHOD of authentication
+    const tokenAPIResponsebody = await tokenAPIResponse.json();
+    console.log("Response in JSON for token is :")
+    console.log(tokenAPIResponsebody);
+
+    //Get the token number from the JSON variable "tokenAPIResponsebody"
+    const tokenNo = tokenAPIResponsebody.token;
+
+
+    console.log("===================PUT METHOD - change in last name and additional needs ========================")
+   
+    //Print the JSON file used in posting method
+    console.log("Original POST method request body JSON file: ")
+    console.log(postRequest);
+
+    //Update the firstname - in json file
+    postRequest.firstname = "Sam";
+
+    //Update the firstname
+    postRequest.lastname = "Mendes";
+
+    //Update the total price with range function defined in common.js file of utils folder
+    postRequest.totalprice = rangeNum(1,1000);
+
+    
+    //Usually, when developers use the JSON.stringify() method, the second argument is usually skipped, 
+    // or with a value null. But this argument has its relevance.
+    //The third argument of JSON.stringify(value, replacer, space) is the number of spaces to use 
+    // for pretty formatting.
+    
+    const jsonString  = JSON.stringify(postRequest, null, 2);
+
+    //Converting the JSON file to Javascript Object using parse() method
+    postRequest = JSON.parse(jsonString);
+
+    //Print the Javascript Object after updation
+    console.log("Updated POST method request body: ")
+    console.log(postRequest);
+
+    const putAPIResponse = await request.put(`/booking/${bID}`, {
+        //Uodated JSON file passed in request body
+        data: postRequest,
+
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Cookie": `token=${tokenNo}`,
+        },
+    });
+
+     //Convert the response from String to JSON - this response has the changes done through PUT method
+     const putAPIResponsebody = await putAPIResponse.json();
+     console.log("Response in JSON for PUT method :")
+     console.log(putAPIResponsebody);
+ 
+     //Validate the Status Codes
+     expect (putAPIResponse.ok()).toBeTruthy();
+     expect (putAPIResponse.status()).toBe(201);
+});
+

@@ -1,0 +1,14 @@
+200
+true
+Response in JSON is :
+{
+  bookingid: 3422,
+  booking: {
+    firstname: 'Keely',
+    lastname: 'Mohr',
+    totalprice: 1000,
+    depositpaid: true,
+    bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+    additionalneeds: 'apple'
+  }
+}

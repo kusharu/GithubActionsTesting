@@ -1,0 +1,18 @@
+{
+    "stageRequestPart":{
+        "firstname" : "Kaushik",
+        "lastname" : "Mukherjee",
+        "totalprice" : 2000,
+        "depositpaid" : true,
+        "bookingdates" : {
+            "checkin" : "2018-01-03",
+            "checkout" : "2019-01-03"
+        },
+        "additionalneeds" : "Dinner",
+        "headers": {
+            "ContentType": "application/json",
+            "Accept": "application/json"
+        }
+
+    }
+}

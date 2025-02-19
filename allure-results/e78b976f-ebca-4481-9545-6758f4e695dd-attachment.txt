@@ -1,0 +1,27 @@
+===================POST METHOD - CREATE BOOKING========================
+200
+true
+Response in JSON is :
+{
+  bookingid: 3753,
+  booking: {
+    firstname: 'Evie',
+    lastname: 'Feest',
+    totalprice: 1000,
+    depositpaid: true,
+    bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+    additionalneeds: 'apple'
+  }
+}
+===================GET METHOD - GET BOOKING DETAILS========================
+Response in JSON is :
+{
+  firstname: 'Evie',
+  lastname: 'Feest',
+  totalprice: 1000,
+  depositpaid: true,
+  bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+  additionalneeds: 'apple'
+}
+200
+true

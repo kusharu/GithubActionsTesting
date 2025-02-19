@@ -1,0 +1,22 @@
+{
+    "default": {
+      "formateOptions":{
+        "snippentInterface": "async-await"
+      },
+      "paths": [
+        "features/*.feature"
+        
+      ],
+      "publishQuite": true,
+      "dryRun": false,
+      "require": [
+        "steps/*.js",
+        "hooks/*.js"
+      ],
+      "format": [
+        "progress-bar",
+        "html: cucumber-report.html"
+      ]
+  
+    }
+  }

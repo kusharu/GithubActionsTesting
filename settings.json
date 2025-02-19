@@ -1,0 +1,24 @@
+{
+    "cucumber.features" :[
+        "src/tests/**/*.feature",
+        "features/**/*.feature",
+        "tests/**/*.feature",
+        "*specs*/**/*.feature",
+        "test/features/*.feature",
+        "features/*.feature"
+
+    ],
+    "cucumber.glue" : [
+        "src/**/*.js",
+        "test/steps/*.js",
+        "features/**/*.js",
+        "features/stepdefinition/*.js",
+        "steps/**/*.js",
+        "steps/login.js",
+        "steps/*.js",
+        "hooks/*.js"
+
+    ]
+    
+  
+}

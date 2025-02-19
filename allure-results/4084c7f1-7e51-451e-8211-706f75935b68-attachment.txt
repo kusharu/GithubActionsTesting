@@ -1,0 +1,38 @@
+===================POST METHOD - CREATE BOOKING========================
+200
+true
+Response in JSON is :
+{
+  bookingid: 4104,
+  booking: {
+    firstname: 'Rebeka',
+    lastname: 'Carter',
+    totalprice: 1000,
+    depositpaid: true,
+    bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+    additionalneeds: 'apple'
+  }
+}
+===================GET METHOD========================
+Response in JSON is :
+{
+  firstname: 'Rebeka',
+  lastname: 'Carter',
+  totalprice: 1000,
+  depositpaid: true,
+  bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+  additionalneeds: 'apple'
+}
+===================AUTHENTICATION KEY WITH POST METHOD ========================
+Response in JSON for token is :
+{ token: '5923d5f88b0b68a' }
+===================PUT METHOD - change in last name and additional needs ========================
+Response in JSON for PUT method is :
+{
+  firstname: 'Nash',
+  lastname: 'Lang',
+  totalprice: 1000,
+  depositpaid: true,
+  bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+  additionalneeds: 'Banana'
+}

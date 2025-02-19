@@ -1,0 +1,28 @@
+{
+  "name": "playwrighttraining",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "regression": "npx playwright test",
+    "webtests": "npx playwright test --grep @Web",
+    "APItests": "npx playwright test --grep @API"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.1",
+    "allure-commandline": "^2.32.2",
+    "allure-playwright": "^3.1.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "dotenv": "^16.4.7",
+    "luxon": "^3.5.0",
+    "node-fetch": "^2.7.0",
+    "playwright": "^1.50.1"
+  }
+}

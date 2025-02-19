@@ -1,0 +1,31 @@
+===================POST METHOD - CREATE BOOKING========================
+200
+true
+Response in JSON is :
+{
+  bookingid: 2769,
+  booking: {
+    firstname: 'Kaushik',
+    lastname: 'Mukherjee',
+    totalprice: 1000,
+    depositpaid: true,
+    bookingdates: { checkin: '2018-01-01', checkout: '2019-01-01' },
+    additionalneeds: 'Lunch'
+  }
+}
+===================GET METHOD========================
+Response in JSON is :
+{
+  firstname: 'Kaushik',
+  lastname: 'Mukherjee',
+  totalprice: 1000,
+  depositpaid: true,
+  bookingdates: { checkin: '2018-01-01', checkout: '2019-01-01' },
+  additionalneeds: 'Lunch'
+}
+===================AUTHENTICATION KEY WITH POST METHOD ========================
+Response in JSON for token is :
+{ token: 'e4966f15350ce7f' }
+===================DELETE METHOD  ========================
+===================GET METHOD========================
+404

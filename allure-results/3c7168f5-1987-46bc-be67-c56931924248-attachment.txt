@@ -1,0 +1,13 @@
+4252
+===================GET METHOD - GET BOOKING DETAILS========================
+Response in JSON is :
+{
+  firstname: 'Miracle',
+  lastname: 'Daniel',
+  totalprice: 1000,
+  depositpaid: true,
+  bookingdates: { checkin: '2025-02-10', checkout: '2025-02-15' },
+  additionalneeds: 'apple'
+}
+200
+true

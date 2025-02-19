@@ -1,0 +1,2 @@
+Response in JSON for token is :
+{ token: 'ea51a1fe57d73dc' }
