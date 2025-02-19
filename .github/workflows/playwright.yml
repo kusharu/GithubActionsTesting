@@ -39,7 +39,7 @@ jobs:
         allure_history: allure-history
         allure_results: build/allure-results      
       
-    - name: Publish test report
+    - name: Publish test report Okay
       uses: peaceiris/actions-gh-pages@v3
       if: always()
       with:
