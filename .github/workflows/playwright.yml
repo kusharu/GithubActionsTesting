@@ -13,16 +13,46 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+
     - name: Install dependencies
       run: npm ci
+
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+
     - name: Run Playwright tests
       run: npx playwright test
-    - name: Upload html report as artifact
-      uses: actions/upload-artifact@v4
+
+    - name: Load test report history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Build test report
+      uses: simple-elf/allure-report-action@v1.7
       if: always()
       with:
-          name: html-report #artifact name
-          path: playwright-report/ # relative path for the html report
-          retention-days: 5 # save the report for 5 days
+        gh_pages: gh-pages
+        allure_history: allure-history
+        allure_results: build/allure-results      
+      
+    - name: Publish test report
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: allure-history    
+
+    # - name: Upload html report as artifact
+    #   uses: actions/upload-artifact@v4
+    #   if: always()
+    #   with:
+          # name: html-report #artifact name
+          # path: playwright-report/ # relative path for the html report
+          # retention-days: 5 # save the report for 5 days
+    
+      
